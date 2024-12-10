@@ -73,6 +73,12 @@ const UserList = () => {
     });
   };
 
+  const handleShow = (elemento) => {
+    setIdUser(elemento)
+    setShowModal(true);
+  };
+
+
   return (
     <div>
       <UserListHeader onCreate={() => setShowModalCreate(true)} />
@@ -83,7 +89,7 @@ const UserList = () => {
           </div>
         </div>
       ) : (
-        <UserTable users={users} onEdit={setIdUser} onDelete={handleDelete} />
+        <UserTable users={users} onEdit={handleShow} onDelete={handleDelete} />
       )}
       {showModal && (
         <UserEdit
