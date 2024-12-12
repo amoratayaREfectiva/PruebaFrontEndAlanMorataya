@@ -1,6 +1,6 @@
 import React from 'react';
 
-const UserListHeader = ({ onCreate }) => (
+const PersonaListHeader = ({ onCreate }) => (
   <div className="row">
     <div className="col-6" style={{ display: 'flex', marginBottom: '10px' }}>
       <h2>Listado de usuarios</h2>
@@ -16,4 +16,4 @@ const UserListHeader = ({ onCreate }) => (
   </div>
 );
 
-export default UserListHeader;
+export default PersonaListHeader;

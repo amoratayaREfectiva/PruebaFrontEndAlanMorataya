@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import { getUsers, deleteUser } from '../Services/ApiService';
+import { getPersonas, deletePersona } from '../Services/ApiService';
 import Swal from 'sweetalert2';
-import UserTable from '../Components/UserTable';
-import UserListHeader from '../Components/UserListHeader';
-import UserEdit from './UserEdit';
-import UserCreate from './UserCreate';
+import PersonaTable from '../Components/PersonaTable';
+import PersonaListHeader from '../Components/PersonaListHeader';
+import PersonaEdit from './PersonaEdit';
+import PersonaCreate from './PersonaCreate';
 
-const UserList = () => {
+const PersonaList = () => {
   const [users, setUsers] = useState([]);
   const [showModal, setShowModal] = useState(false);
   const [showModalCreate, setShowModalCreate] = useState(false);
@@ -15,7 +15,7 @@ const UserList = () => {
 
   useEffect(() => {
     setIsLoading(true); // Inicia el loader
-    getUsers()
+    getPersonas()
       .then(data => setUsers(data))
       .catch(error => console.error(error))
       .finally(() => setIsLoading(false)); // Termina el loader
@@ -51,7 +51,7 @@ const UserList = () => {
       cancelButtonText: 'No',
     }).then((result) => {
       if (result.isConfirmed) {
-        deleteUser(id)
+        deletePersona(id)
           .then(data => {
             setUsers(prevUsers => prevUsers.filter(user => user.Id !== data.usuarioEliminado.Id));
             showToast('success', '¡Se ha eliminado el usuario correctamente!');
@@ -81,7 +81,7 @@ const UserList = () => {
 
   return (
     <div>
-      <UserListHeader onCreate={() => setShowModalCreate(true)} />
+      <PersonaListHeader onCreate={() => setShowModalCreate(true)} />
       {isLoading ? (
         <div className="text-center">
           <div className="spinner-border" role="status">
@@ -89,17 +89,17 @@ const UserList = () => {
           </div>
         </div>
       ) : (
-        <UserTable users={users} onEdit={handleShow} onDelete={handleDelete} />
+        <PersonaTable users={users} onEdit={handleShow} onDelete={handleDelete} />
       )}
       {showModal && (
-        <UserEdit
+        <PersonaEdit
           id={idUser}
           onChangePropValue={setShowModal}
           onChangeResponse={handleResponseUpdate}
         />
       )}
       {showModalCreate && (
-        <UserCreate
+        <PersonaCreate
           onChangePropValue={setShowModalCreate}
           onChangeResponse={handleResponseCreate}
         />
@@ -108,4 +108,4 @@ const UserList = () => {
   );
 };
 
-export default UserList;
+export default PersonaList;

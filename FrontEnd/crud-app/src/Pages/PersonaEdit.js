@@ -1,8 +1,7 @@
 import React, { useState, useEffect, useCallback } from 'react';
-import axios from 'axios';
-import { getUserId, updateUser } from '../Services/ApiService';
+import { getPersonaId, updatePersona } from '../Services/ApiService';
 
-const UserEdit = ({ id, onChangePropValue, onChangeResponse }) => {
+const PersonaEdit = ({ id, onChangePropValue, onChangeResponse }) => {
     const [user, setUser] = useState({});
     const [show, setShow] = useState(false);
     const [error, setError] = useState(null);
@@ -10,7 +9,7 @@ const UserEdit = ({ id, onChangePropValue, onChangeResponse }) => {
     useEffect(() => {
         const fetchUser = async () => {
             try {
-                const data = await getUserId(id);
+                const data = await getPersonaId(id);
                 setUser(data.usuario);
                 setShow(true);
             } catch (err) {
@@ -29,7 +28,7 @@ const UserEdit = ({ id, onChangePropValue, onChangeResponse }) => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const data = await updateUser(user);
+            const data = await updatePersona(user);
             setUser(data.usuarioActualizado);
             setShow(false);
             onChangePropValue(false);
@@ -177,4 +176,4 @@ const UserEdit = ({ id, onChangePropValue, onChangeResponse }) => {
     );
 };
 
-export default UserEdit;
+export default PersonaEdit;

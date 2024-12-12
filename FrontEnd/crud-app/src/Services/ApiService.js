@@ -1,57 +1,57 @@
 import axios from 'axios';
 
-const BASE_URL = 'https://x3pq6nlu7h.execute-api.us-east-2.amazonaws.com/Sandbox/';
+const BASE_URL = 'https://4huf2k1ud0.execute-api.us-east-2.amazonaws.com/Sandbox/';
 
 const apiService = axios.create({
   baseURL: BASE_URL
 
 });
 
-export const getUsers = async () => {
+export const getPersonas = async () => {
   try {
     const response =  await apiService.get('GetActivatePersonas');
-    console.log("LA DATA ES ",response)
+ 
     return response.data;
     
   } catch (error) {
-    console.error('Error fetching users:', error);
+    console.error('Error fetching Personas:', error);
   }
 };
 
 
-export const getUserId = async (userId) => {
+export const getPersonaId = async (PersonaId) => {
     try {
-      const response = await apiService.get(`GetPersonaId?idPersona=${userId}`);
+      const response = await apiService.get(`GetPersonaId?idPersona=${PersonaId}`);
       return response.data;
     } catch (error) {
-      console.error(`Error deleting user ${userId}:`, error);
+      console.error(`Error deleting Persona ${PersonaId}:`, error);
     }
   };
 
-export const createUser = async (userData) => {
+export const createPersona = async (PersonaData) => {
   try {
-    const response = await apiService.post('CreatePersona', userData);
+    const response = await apiService.post('CreatePersona', PersonaData);
     return response.data;
   } catch (error) {
-    console.error('Error creating user:', error);
+    console.error('Error creating Persona:', error);
   }
 };
 
-export const updateUser = async (userData) => {
+export const updatePersona = async (PersonaData) => {
   try {
-    const response = await apiService.put(`UpdatePersona`, userData);
+    const response = await apiService.put(`UpdatePersona`, PersonaData);
     return response.data;
   } catch (error) {
-    console.error(`Error updating user`, error);
+    console.error(`Error updating Persona`, error);
   }
 };
 
-export const deleteUser = async (userId) => {
+export const deletePersona = async (PersonaId) => {
   try {
-    const response=await apiService.delete(`/DeletePersona?idPersona=${userId}`);
+    const response=await apiService.delete(`/DeletePersona?idPersona=${PersonaId}`);
     return response.data;
   } catch (error) {
-    console.error(`Error deleting user ${userId}:`, error);
+    console.error(`Error deleting Persona ${PersonaId}:`, error);
   }
 };
 

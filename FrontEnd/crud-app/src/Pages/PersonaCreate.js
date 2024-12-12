@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
-import { getUserId, createUser } from '../Services/ApiService';
+import {createPersona } from '../Services/ApiService';
 
-const UserCreate = ({  onChangePropValue, onChangeResponse }) => {
+const PersonaCreate = ({  onChangePropValue, onChangeResponse }) => {
     const [user, setUser] = useState({});
     const [show, setShow] = useState(false);
     useEffect(() => {
@@ -22,7 +21,7 @@ const UserCreate = ({  onChangePropValue, onChangeResponse }) => {
         try {
            
             user["status"]=true
-            createUser(user)
+            createPersona(user)
                 .then(data => {
                     
                     setUser(data.usuarioInsertado)
@@ -148,4 +147,4 @@ const UserCreate = ({  onChangePropValue, onChangeResponse }) => {
     );
 };
 
-export default UserCreate;
+export default PersonaCreate;

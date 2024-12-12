@@ -1,6 +1,6 @@
 import React from 'react';
 
-const UserTable = ({ users, onEdit, onDelete }) => (
+const PersonaTable = ({ users, onEdit, onDelete }) => (
   <table className="table table-striped table-hover">
     <thead className="table-dark">
       <tr>
@@ -47,4 +47,4 @@ const UserTable = ({ users, onEdit, onDelete }) => (
   </table>
 );
 
-export default UserTable;
+export default PersonaTable;
